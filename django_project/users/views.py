@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
 # L'import ci-dessous permet si l'on veut créer des "forms" de "scratch", il permettra differents type de validation en allant de l'email au mot de passe en passant par l'insertion d'information correct
 from django.contrib import messages
+from django.shortcuts import render, redirect
+
 from .forms import UserRegisterForm
+
 
 def register(request):
     if request.method == 'POST':
@@ -13,4 +15,4 @@ def register(request):
             return redirect('blog-home')
     else:
         form = UserRegisterForm()
-    return render(request, 'users/register.html', {'form':form})
+    return render(request, 'users/register.html', {'form': form})
