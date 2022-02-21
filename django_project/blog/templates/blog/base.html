@@ -18,7 +18,7 @@
     </head>
     <body>
         <!--    Snipped from Django Corey Schafer-->
-        <header class=""site-header>
+        <header class="site-header">
             <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
                 <div class="container">
                     <a class="navbar-brand mr4" href="{% url 'blog-home' %}">
@@ -34,8 +34,9 @@
                         </div>
 
                         <!-- Navbar Right Side -->
-                        <div>
+                        <div class="navbar-nav">
                             {% if user.is_authenticated %}
+                                <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
                                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                             {% else %}
