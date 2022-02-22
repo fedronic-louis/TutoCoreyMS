@@ -1,0 +1,46 @@
+Dockerisé un projet Django avec Sqlite3
+
+
+On crée 3 fichiers à la racine du projet:
+
+Dockerfile
+
+	# syntax=docker/dockerfile:1
+	FROM python:3
+	ENV C:\Users\31010-12-05\AppData\Local\Programs\Python\Python310=1  # Il faut mettre le chemin qui mène à la version de python que l'on souhaite utiliser
+	WORKDIR /django_project  # Ici c'est le nom de notre projet
+	COPY requirements.txt /django_project/ # Ici c'est le nom de notre projet
+	RUN pip install -r requirements.txt
+	COPY . /django_project/ # Ici c'est le nom de notre projet
+
+
+
+
+requirements.txt
+
+	Django==4.0.2  # Ici il faut constamment mettre le nom du package avec la version exact
+	django-crispy-forms==1.14.0
+	Pillow==9.0.1
+	
+# Pour info si l'on souhaite dockeriser un projet déja abouti avec de nombreux packages, pensé à entrer ce que le container desktop dit qu'il ne reconnait pas
+# Pour savoir ce que le container ne reconnait pas, 
+#	il faut d'abord finir de faire le fichier docker-compose.yml 
+#	puis 
+#	entrer la ligne de commande dans le terminal "docker-compose up -d --build". 
+#	et enfin
+#	double clicker sur le container nouvellement créé dans notre docker desktop
+
+
+docker-compose.yml
+
+	version: "3.10" #ici c'est la version de python utilisé
+	
+	services:
+	
+	  web:
+	    build: .
+	    command: python manage.py runserver 0.0.0.0:8081 # 8081 correspond au port de docker
+	    volumes:
+	      - .:/django_project
+	    ports:
+	      - "8000:8081" # 8000 correspond au port windows & 8081 correspond au port de docker

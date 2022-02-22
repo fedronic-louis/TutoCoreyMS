@@ -1,0 +1,11 @@
+version: "3.10"
+
+services:
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8081
+    volumes:
+      - .:/django_project
+    ports:
+      - "8000:8081"
