@@ -44,7 +44,7 @@ class PostListView(ListView):
     context_object_name = 'posts'
     # le " - " va permettre de mettre le dernier post ou blog créé en 1er dans l'affichage du home page
     ordering = ['-date_posted']
-    paginate_by = 2
+    paginate_by = 5
 
 
 class PostDetailView(DetailView):
